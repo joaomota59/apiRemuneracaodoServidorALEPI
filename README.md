@@ -26,3 +26,11 @@ mes = mes da folha de pagamento Ex: 1,2,3,4...</br>
 Obs: 1 corresponde a Janeiro, 2 a Fevereiro...</br>
 page = responsavel pela paginação da folha de pagamento... Ex: 1,2,3,4...
 
+
+### Exemplo de Entrada via Swagger (Request)
+![Parâmetros de Entrada](https://imgur.com/H24UFAf.png)
+
+### Exemplo de Saída via Swagger (Response)
+![Exemplo de Response](https://imgur.com/rdQgbL9.png)
+
+>Obs: Obs os nomes dos servidores são retornados na API.</br>Somente foram ocultados da imagem de exemplo.
