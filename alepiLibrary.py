@@ -46,7 +46,7 @@ class AlepiLibrary:
 
         if not flagExisteMes: #se o mes passado não estiver disponivel para download...
             AlepiLibrary.driver.close()
-            return "Erro",0
+            return "Mês não disponível",0
         
         matriz = []
 

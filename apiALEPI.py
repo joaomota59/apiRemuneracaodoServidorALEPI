@@ -1,21 +1,28 @@
 from alepiLibrary import AlepiLibrary
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, Response, status
 
 app = FastAPI(title="API ALEPI", description="API para consulta da Remuneração do Servidor", version="0.1.0")
 
 api = AlepiLibrary()
 
-@app.get("/folha")
-async def read_item( ano : int = 2023, mes : int = 1, page : int = 1):
+@app.get("/folha", status_code=status.HTTP_200_OK)
+async def read_item(
+    response: Response, 
+    ano: int = Query(2023, description="Ano da Folha de Pagamento"), 
+    mes: int = Query(1, description="Mês da Folha de Pagamento 1=Janeiro, 2=Fevereiro, 3=Março ..."), 
+    page: int = Query(1, description="Paginação da Folha de pagamento 1=Primeira página, 2=Segunda página ...")
+    ):
 
     folhaRef = api.getFolhaPagamento(ano = ano, mes = mes,page = page)
+
+    if folhaRef[0] == "Mês não disponível": response.status_code = 404
 
     return {
         "folha": folhaRef[0],
         "quantidadePaginas": folhaRef[1]
     }
 
-@app.get("/referencias")
+@app.get("/referencias", status_code=status.HTTP_200_OK)
 async def read_item():
     ref = api.referenciasDisponiveis()
     return ref
